@@ -30,13 +30,8 @@ setup(
         'bin/tokenizer',
     ],
     package_data={
-        'somajo': ["abbreviations.txt",
-                   "camel_case_tokens.txt",
-                   "single_token_abbreviations.txt",
-                   "tokens_with_plus_or_ampersand.txt"]
+        'somajo': ["*.txt"]
     },
-    url="https://github.com/tsproisl/SoMaJo",
-    download_url='https://github.com/tsproisl/SoMaJo/archive/v%s.tar.gz' % version,
     license='GNU General Public License v3 or later (GPLv3+)',
     description='A tokenizer and sentence splitter for German web and social media texts.',
     long_description=long_description,
