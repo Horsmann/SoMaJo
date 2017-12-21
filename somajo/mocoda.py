@@ -10,7 +10,7 @@ import re
 class MoCoDa(object):
     
     def __init__(self):
-        self.standalone = re.compile("^(\.{1,2})$|^(\?{1,2})$|^(!{1,2})$")
+        self.standalone = re.compile("^(\.{1,2})$|^(\?{1,2})$|^(!{1,2})$|^(\+{1,2})|^(-{1,2})$")
     
     def refineTokenization(self, somojaTokenization):
         out = []
@@ -21,6 +21,7 @@ class MoCoDa(object):
                 for c in tok:
                     out.append(c)
                 continue
+                 	
             out.append(tok)
     
 
