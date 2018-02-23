@@ -7,7 +7,6 @@ import time
 
 from somajo import Tokenizer
 from somajo import SentenceSplitter
-from somajo import MoCoDa
 
 
 def arguments():
@@ -20,7 +19,6 @@ def arguments():
     parser.add_argument("--parallel", type=int, default=1, metavar="N", help="Run N worker processes (up to the number of CPUs) to speed up tokenization.")
     parser.add_argument("--split_sentences", action="store_true", help="Do also split the paragraphs into sentences.")
     parser.add_argument("FILE", type=argparse.FileType("r"), help="The input file")
-    parser.add_argument("--mocoda", action="store_true", help="Use mocoda extra tokenization")
     args = parser.parse_args()
     return args
 
@@ -61,13 +59,6 @@ def main():
     if args.token_classes or args.extra_info:
         tokenized_paragraphs = (["\t".join(t) for t in tp] for tp in tokenized_paragraphs)
 
-    if args.mocoda:
-        mocoda = MoCoDa()
-        mocoda_paragraph=[]
-        for somojaTokenization in tokenized_paragraphs:
-            out = mocoda.refineTokenization(somojaTokenization)
-            mocoda_paragraph.append(out)
-        tokenized_paragraphs=mocoda_paragraph
     for tp in tokenized_paragraphs:
         n_tokens += len(tp)
         print("\n".join(tp), "\n", sep="")
